@@ -11,9 +11,8 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 }
 
 ## checking Chocolatey
-Write-Host "checking chocolatey..."
+Write-Host -NoNewline "checking chocolatey..."
 if ((!$env:ChocolateyInstall) -or !(Test-Path "$env:ChocolateyInstall")){
-	Enable-SPFeature
 	Write-Output "[Not Found]"
 	Write-Host "installing chocolatey..."
 	## installing Chocolatey
@@ -32,34 +31,29 @@ if ((!$env:ChocolateyInstall) -or !(Test-Path "$env:ChocolateyInstall")){
 	iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 	Write-Host "installed chocolatey..."
 }else{
-	Enable-SPFeature
 	Write-Output "[Found]"
 }
 
 ## checking python
-Write-Host "checking python..."
+Write-Host -NoNewline "checking python..."
 $testpython = python -V
 if($testpython -eq ""){
-	Enable-SPFeature
 	Write-Output "[Not Found]"
 	Write-Host "installing python..."
 	## installing python
 	choco install python --version=3.9 -y
 }else{
-	Enable-SPFeature
 	Write-Output "[Found]"
 }
 
 ## checking pipenv
-Write-Host "checking pipenv..."
+Write-Host -NoNewline "checking pipenv..."
 $testpipenv = python -m pipenv --version
 if($testpipenv -eq ""){
-	Enable-SPFeature
 	Write-Output "[Not Found]"
 	Write-Host "installing pipenv..."
 	## install pipenv module
 	python -m pip install pipenv
 }else{
-	Enable-SPFeature
 	Write-Output "[Found]"
 }
