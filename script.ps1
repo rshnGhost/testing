@@ -16,7 +16,7 @@ try {
 	$testchoco = powershell choco -v
 	$testchoco
 }
-catch [System.Management.CommandNotFoundException] {
+catch{
 	Write-Host "installing Chocolatey..."
 }
 $testchoco = powershell choco -v
