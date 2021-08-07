@@ -10,21 +10,31 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 	Exit
 }
 
-## installing Chocolatey
-# Set directory for installation - Chocolatey does not lock
-# down the directory if not the default
-$InstallDir='C:\ProgramData\chocolatey'
-$env:ChocolateyInstall="$InstallDir"
+## checking Chocolatey
+$testchoco = powershell choco -v
+if(-not($testchoco)){
+	## installing Chocolatey
+	# Set directory for installation - Chocolatey does not lock
+	# down the directory if not the default
+	$InstallDir='C:\ProgramData\chocolatey'
+	$env:ChocolateyInstall="$InstallDir"
 
-# If your PowerShell Execution policy is restrictive, you may
-# not be able to get around that. Try setting your session to
-# Bypass.
-Set-ExecutionPolicy Bypass -Scope Process -Force;
+	# If your PowerShell Execution policy is restrictive, you may
+	# not be able to get around that. Try setting your session to
+	# Bypass.
+	Set-ExecutionPolicy Bypass -Scope Process -Force;
 
-# All install options - offline, proxy, etc at
-# https://chocolatey.org/install
-iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+	# All install options - offline, proxy, etc at
+	# https://chocolatey.org/install
+	iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+}
 
-## installing python
-choco install python --version=3.9 -y
+## checking python
+$testpython = powershell python -V
+if(-not($testpython)){
+	## installing python
+	choco install python --version=3.9 -y
+}
+
+## install pipenv module
 python -m pip install pipenv
