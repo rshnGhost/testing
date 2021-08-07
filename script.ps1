@@ -29,6 +29,8 @@ if(-not($testchoco)){
 	# All install options - offline, proxy, etc at
 	# https://chocolatey.org/install
 	iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+}else{
+	Write-Host "found Chocolatey..."
 }
 
 ## checking python
@@ -38,6 +40,8 @@ if(-not($testpython)){
 	Write-Host "installing python..."
 	## installing python
 	choco install python --version=3.9 -y
+}else{
+	Write-Host "found python..."
 }
 
 ## checking pipenv
@@ -47,4 +51,6 @@ if(-not($testpipenv)){
 	Write-Host "installing pipenv..."
 	## install pipenv module
 	python -m pip install pipenv
+}else{
+	Write-Host "found pipenv..."
 }
