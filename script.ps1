@@ -18,10 +18,6 @@ try {
 }
 catch{
 	Write-Host "installing Chocolatey..."
-}
-$testchoco = powershell choco -v
-if($testchoco -eq ""){
-	Write-Host "installing Chocolatey..."
 	## installing Chocolatey
 	# Set directory for installation - Chocolatey does not lock
 	# down the directory if not the default
@@ -36,8 +32,6 @@ if($testchoco -eq ""){
 	# All install options - offline, proxy, etc at
 	# https://chocolatey.org/install
 	## iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-}else{
-	Write-Host "found Chocolatey..."
 }
 
 ## checking python
