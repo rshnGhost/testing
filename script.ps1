@@ -28,6 +28,7 @@ if ((!$env:ChocolateyInstall) -or !(Test-Path "$env:ChocolateyInstall")){
 	# All install options - offline, proxy, etc at
 	# https://chocolatey.org/install
 	iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+	Write-Host "installed chocolatey..."
 }else{
 	Write-Host "found chocolatey..."
 }
