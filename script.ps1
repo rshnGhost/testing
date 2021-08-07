@@ -11,8 +11,10 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 }
 
 ## checking Chocolatey
+Write-Host "checking Chocolatey..."
 $testchoco = powershell choco -v
 if(-not($testchoco)){
+	Write-Host "installing Chocolatey..."
 	## installing Chocolatey
 	# Set directory for installation - Chocolatey does not lock
 	# down the directory if not the default
@@ -30,15 +32,19 @@ if(-not($testchoco)){
 }
 
 ## checking python
+Write-Host "checking python..."
 $testpython = powershell python -V
 if(-not($testpython)){
+	Write-Host "installing python..."
 	## installing python
 	choco install python --version=3.9 -y
 }
 
 ## checking pipenv
+Write-Host "checking pipenv..."
 $testpipenv = powershell python -m pipenv --version
 if(-not($testpipenv)){
+	Write-Host "installing pipenv..."
 	## install pipenv module
 	python -m pip install pipenv
 }
