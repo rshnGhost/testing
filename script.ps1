@@ -13,7 +13,7 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 ## checking Chocolatey
 try {
 	Write-Host "checking Chocolatey..."
-	$testchoco = powershell choco -v
+	$testchoco = choco -v
 	$testchoco
 }
 catch{
@@ -36,7 +36,7 @@ catch{
 
 ## checking python
 Write-Host "checking python..."
-$testpython = powershell python -V
+$testpython = python -V
 if($testpython -eq ""){
 	Write-Host "installing python..."
 	## installing python
@@ -47,7 +47,7 @@ if($testpython -eq ""){
 
 ## checking pipenv
 Write-Host "checking pipenv..."
-$testpipenv = powershell python -m pipenv --version
+$testpipenv = python -m pipenv --version
 if($testpipenv -eq ""){
 	Write-Host "installing pipenv..."
 	## install pipenv module
