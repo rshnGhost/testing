@@ -12,7 +12,12 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 
 ## checking Chocolatey
 Write-Host "checking Chocolatey..."
-$testchoco = powershell choco -v
+Try{
+	$testchoco = powershell choco -v
+}
+Catch{
+    Write-Host "Someting is not working"
+}
 if(-not($testchoco)){
 	Write-Host "installing Chocolatey..."
 	## installing Chocolatey
