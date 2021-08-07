@@ -11,13 +11,10 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 }
 
 ## checking Chocolatey
-try {
-	Write-Host "checking Chocolatey..."
-	$testchoco = choco -v
-	$testchoco
-}
-catch{
-	Write-Host "installing Chocolatey..."
+Write-Host "checking chocolatey..."
+$testchoco = choco -v
+if($testchoco -eq ""){
+	Write-Host "installing chocolatey..."
 	## installing Chocolatey
 	# Set directory for installation - Chocolatey does not lock
 	# down the directory if not the default
@@ -32,6 +29,8 @@ catch{
 	# All install options - offline, proxy, etc at
 	# https://chocolatey.org/install
 	## iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+}else{
+	Write-Host "found chocolatey..."
 }
 
 ## checking python
