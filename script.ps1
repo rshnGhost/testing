@@ -36,5 +36,9 @@ if(-not($testpython)){
 	choco install python --version=3.9 -y
 }
 
-## install pipenv module
-python -m pip install pipenv
+## checking pipenv
+$testpipenv = powershell python -m pipenv --version
+if(-not($testpipenv)){
+	## install pipenv module
+	python -m pip install pipenv
+}
