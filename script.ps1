@@ -12,8 +12,7 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 
 ## checking Chocolatey
 Write-Host "checking chocolatey..."
-$testchoco = choco -v
-if($testchoco -eq ""){
+if ((!$env:ChocolateyInstall) -or !(Test-Path "$env:ChocolateyInstall")){
 	Write-Host "installing chocolatey..."
 	## installing Chocolatey
 	# Set directory for installation - Chocolatey does not lock
