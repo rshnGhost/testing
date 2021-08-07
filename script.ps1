@@ -1,14 +1,4 @@
-Add-Type -AssemblyName System.Windows.Forms
-[System.Windows.Forms.Application]::EnableVisualStyles()
-
-$ErrorActionPreference = 'SilentlyContinue'
-$wshell = New-Object -ComObject Wscript.Shell
-$Button = [System.Windows.MessageBoxButton]::YesNoCancel
-$ErrorIco = [System.Windows.MessageBoxImage]::Error
-If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]'Administrator')) {
-	Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
-	Exit
-}
+$pythonVersion = '3.9'
 
 ## checking Chocolatey
 Write-Host -NoNewline "checking chocolatey..."
@@ -29,7 +19,6 @@ if ((!$env:ChocolateyInstall) -or !(Test-Path "$env:ChocolateyInstall")){
 	# All install options - offline, proxy, etc at
 	# https://chocolatey.org/install
 	iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-	Write-Host "installed chocolatey..."
 }else{
 	Write-Output "[Found]"
 }
@@ -41,7 +30,7 @@ if($testpython -eq ""){
 	Write-Output "[Not Found]"
 	Write-Host "installing python..."
 	## installing python
-	choco install python --version=3.9 -y
+	choco install python --version=$pythonVersion -y
 }else{
 	Write-Output "[Found]"
 }
