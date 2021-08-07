@@ -10,6 +10,7 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 	Exit
 }
 
+## installing Chocolatey
 # Set directory for installation - Chocolatey does not lock
 # down the directory if not the default
 $InstallDir='C:\ProgramData\chocolatey'
@@ -23,3 +24,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force;
 # All install options - offline, proxy, etc at
 # https://chocolatey.org/install
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+## installing python
+choco install python --version=3.9 -y
+python -m pip install pipenv
