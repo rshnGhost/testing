@@ -11,7 +11,14 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 }
 
 ## checking Chocolatey
-Write-Host "checking Chocolatey..."
+try {
+	Write-Host "checking Chocolatey..."
+	$testchoco = powershell choco -v
+	$testchoco
+}
+catch [System.Management.CommandNotFoundException] {
+	Write-Host "installing Chocolatey..."
+}
 $testchoco = powershell choco -v
 if($testchoco -eq ""){
 	Write-Host "installing Chocolatey..."
