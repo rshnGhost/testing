@@ -1,4 +1,4 @@
-$pythonVersion = '3.9'
+$pythonVersion = '3.9.6'
 
 ## checking Chocolatey
 Write-Host -NoNewline "checking chocolatey..."
