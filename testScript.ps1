@@ -1,5 +1,5 @@
 $pythonVersion = '3.9.6'
-https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe
+$url = 'https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe'
 $pip = 0
 $python = 0
 
