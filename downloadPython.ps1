@@ -16,6 +16,13 @@ If (!$statusFile) {
 else{
   Write-Host "[File found]"
   Write-Host -NoNewline "Installing latest release"
-  & C:\Temp\python-3.9.6-amd64.exe /quiet InstallAllUsers=1
-  Write-Host "[Done]"
+  C:\Temp\python-3.9.6-amd64.exe /quiet InstallAllUsers=1
+  Try{
+		$er = (invoke-expression "python -V") 2>&1
+		if ($lastexitcode) {throw $er}
+		else {Write-Host "[Done]"}
+	}
+	Catch{
+		Write-Output "[Failed]"
+	}
 }
