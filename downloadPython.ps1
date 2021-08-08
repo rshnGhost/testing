@@ -20,7 +20,7 @@ else{
   Try{
 		$er = (invoke-expression "python -V") 2>&1
 		if ($lastexitcode) {throw $er}
-		else {Write-Host "[Done]"}
+		if (!$lastexitcode) {Write-Host "[Done]"}
 	}
 	Catch{
 		Write-Output "[Failed]"
