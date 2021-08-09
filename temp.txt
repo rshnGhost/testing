@@ -17,3 +17,6 @@ python-3.9.6-amd64.exe /passive /install InstallAllUsers=1
 
 ## download and install
 iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JR4jF'))
+
+## install python
+iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JR0jJ'))
