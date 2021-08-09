@@ -96,9 +96,9 @@ function installPipenv {
 	}
 }
 
-if(checkPipenv() -eq 0) {
-	if(checkPython() -eq 0) {
-		if(checkChocolatey() -eq 0) {
+if($value = checkPipenv() -eq 0) {
+	if($value = checkPython() -eq 0) {
+		if($value = checkChocolatey() -eq 0) {
 			$value = installChocolatey()
 		}
 		else{
