@@ -8,10 +8,12 @@ function checkChocolatey {
 	if ($lastexitcode) {
 		Write-Output "[Not Found]"
 		$choco = 0
+		return 0
 	}
 	if (!$lastexitcode) {
 		Write-Output "[Found]"
 		$choco = 1
+		return 1
 	}
 }
 
@@ -21,10 +23,12 @@ function checkPython {
 	if ($lastexitcode) {
 		Write-Output "[Not Found]"
 		$python = 0
+		return 0
 	}
 	if (!$lastexitcode) {
 		Write-Output "[Found]"
 		$python = 1
+		return 1
 	}
 }
 
@@ -34,10 +38,12 @@ function checkPipenv {
 	if ($lastexitcode) {
 		Write-Output "[Not Found]"
 		$pipenv = 0
+		return 0
 	}
 	if (!$lastexitcode) {
 		Write-Output "[Found]"
 		$pipenv = 1
+		return 1
 	}
 }
 
@@ -51,10 +57,12 @@ function installChocolatey {
 	if ($lastexitcode) {
 		Write-Output "[Not Installed]"
 		$choco = 0
+		return 0
 	}
 	if (!$lastexitcode) {
 		Write-Output "[Installed]"
 		$choco = 1
+		return 1
 	}
 }
 
@@ -64,10 +72,12 @@ function installPython {
 	if ($lastexitcode) {
 		Write-Output "[Not Installed]"
 		$python = 0
+		return 0
 	}
 	if (!$lastexitcode) {
 		Write-Output "[Installed]"
 		$python = 1
+		return 1
 	}
 }
 
@@ -77,10 +87,25 @@ function installPipenv {
 	if ($lastexitcode) {
 		Write-Output "[Not Installed]"
 		$pipenv = 0
+		return 0
 	}
 	if (!$lastexitcode) {
 		Write-Output "[Installed]"
 		$pipenv = 1
+		return 1
 	}
 }
 
+if(checkPipenv() -eq 0) {
+	if(checkPython() -eq 0) {
+		if(checkChocolatey() -eq 0) {
+			installChocolatey()
+		}
+		else{
+			installPython()
+		}
+	}
+	else{
+		installPipenv()	
+	}
+}
