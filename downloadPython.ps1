@@ -52,16 +52,19 @@ Catch{
 				[EnvironmentVariableTarget]::Machine)
 			refreshenv
 		}
-		Try{
-			$er = (invoke-expression "python -V") 2>&1
-			if ($lastexitcode) {throw $er}
-			if (!$lastexitcode) {
-				Write-Host "[Done]"
-				python -m pip install pipenv
+		start powershell{
+			Try{
+				Write-Host -NoNewline "checking python..."
+				$er = (invoke-expression "python -V") 2>&1
+				if ($lastexitcode) {throw $er}
+				if (!$lastexitcode) {
+					Write-Host "[Done]"
+					python -m pip install pipenv
+				}
 			}
-		}
-		Catch{
-			Write-Output "[Failed]"
+			Catch{
+				Write-Output "[Failed]"
+			}
 		}
 	}
 }
