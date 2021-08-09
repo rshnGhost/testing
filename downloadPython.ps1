@@ -57,4 +57,5 @@ Catch{
 			Catch{
 				Write-Output "[Failed]"
 			}
+		}
 	}
