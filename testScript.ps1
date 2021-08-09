@@ -1,3 +1,5 @@
+## iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRCsv'))
+
 $python = 0
 $pipenv = 0
 $choco = 0
