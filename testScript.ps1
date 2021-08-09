@@ -10,13 +10,13 @@ function checkChocolatey {
 		$er = (invoke-expression "choco -v") 2>&1
 		if ($lastexitcode) {throw $er}
 		if (!$lastexitcode) {
-			Write-Output "[Found]"
+			Write-Host "[Found]"
 			$choco = 1
 			return 1
 		}
 	}
 	catch{
-		Write-Output "[Not Found]"
+		Write-Host "[Not Found]"
 		$choco = 0
 		return 0
 	}
@@ -28,13 +28,13 @@ function checkPython {
 		$er = (invoke-expression "python -V") 2>&1
 		if ($lastexitcode) {throw $er}
 		if (!$lastexitcode) {
-			Write-Output "[Found]"
+			Write-Host "[Found]"
 			$python = 1
 			return 1
 		}
 	}
 	catch{
-		Write-Output "[Not Found]"
+		Write-Host "[Not Found]"
 		$python = 0
 		return 0
 	}
@@ -46,13 +46,13 @@ function checkPipenv {
 		$er = (invoke-expression "python -m pipenv --version") 2>&1
 		if ($lastexitcode) {throw $er}
 		if (!$lastexitcode) {
-			Write-Output "[Found]"
+			Write-Host "[Found]"
 			$pipenv = 1
 			return 1
 		}
 	}
 	catch{
-		Write-Output "[Not Found]"
+		Write-Host "[Not Found]"
 		$pipenv = 0
 		return 0
 	}
@@ -68,13 +68,13 @@ function installChocolatey {
 		$er = (invoke-expression "choco -v") 2>&1
 		if ($lastexitcode) {throw $er}
 		if (!$lastexitcode) {
-			Write-Output "[Installed]"
+			Write-Host "[Installed]"
 			$choco = 1
 			return 1
 		}
 	}
 	catch{
-		Write-Output "[Not Installed]"
+		Write-Host "[Not Installed]"
 		$choco = 0
 		return 0
 	}
@@ -86,13 +86,13 @@ function installPython {
 		$er = (invoke-expression "choco install python --version=3.9.6 -y") 2>&1
 		if ($lastexitcode) {throw $er}
 		if (!$lastexitcode) {
-			Write-Output "[Installed]"
+			Write-Host "[Installed]"
 			$python = 1
 			return 1
 		}
 	}
 	catch{
-		Write-Output "[Not Installed]"
+		Write-Host "[Not Installed]"
 		$python = 0
 		return 0
 	}
@@ -104,13 +104,13 @@ function installPipenv {
 		$er = (invoke-expression "python -m pip install pipenv") 2>&1
 		if ($lastexitcode) {throw $er}
 		if (!$lastexitcode) {
-			Write-Output "[Installed]"
+			Write-Host "[Installed]"
 			$pipenv = 1
 			return 1
 		}
 	}
 	catch{
-		Write-Output "[Not Installed]"
+		Write-Host "[Not Installed]"
 		$pipenv = 0
 		return 0
 	}
