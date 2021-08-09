@@ -1,0 +1,16 @@
+## install choco
+iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRc0V'))
+
+## uninstall choco
+iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRclc'))
+
+## quick install
+iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRcLl'))
+
+## try catch
+iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRCsv'))
+
+refreshenv
+
+python-3.9.6-amd64.exe /quiet InstallAllUsers=1
+python-3.9.6-amd64.exe /passive /install
