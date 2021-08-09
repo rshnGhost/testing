@@ -16,7 +16,7 @@ If (!$statusFile) {
 else{
   Write-Host "[File found]"
   Write-Host -NoNewline "Installing latest release"
-  Start-Process C:\Temp\python-3.9.6-amd64.exe /passive /install InstallAllUsers=1 -Wait
+  Start-Process C:\Temp\python-3.9.6-amd64.exe -Wait /passive /install InstallAllUsers=1
   pause
   Try{
 		$er = (invoke-expression "python -V") 2>&1
