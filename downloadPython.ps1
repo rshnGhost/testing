@@ -47,7 +47,8 @@ Catch{
 			Start-Process -Wait $exe -ArgumentList $args
 			[Environment]::SetEnvironmentVariable(
 				"Path",
-				[Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";C:\Program Files\Python39",
+				[Environment]::GetEnvironmentVariable("Path",
+				[EnvironmentVariableTarget]::Machine) + ";C:\Program Files\Python39",
 				[EnvironmentVariableTarget]::Machine)
 		}
 		Try{
