@@ -45,6 +45,7 @@ Catch{
 			$exe = 'C:\Temp\python-3.9.6-amd64.exe'
 			$args = '/passive', '/install', 'InstallAllUsers=1'
 			Start-Process -Wait $exe -ArgumentList $args
+			$env:Path += ";C:\Program Files\Python39" 
 		}
 		Try{
 			$er = (invoke-expression "python -V") 2>&1
