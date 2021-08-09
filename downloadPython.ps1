@@ -59,7 +59,9 @@ Catch{
 				if ($lastexitcode) {throw $er}
 				if (!$lastexitcode) {
 					Write-Host "[Done]"
+					Write-Host -NoNewline "checking pipenv..."
 					python -m pip install pipenv
+					Write-Host "[Done]"
 				}
 			}
 			Catch{
