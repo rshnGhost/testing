@@ -50,6 +50,7 @@ Catch{
 				[Environment]::GetEnvironmentVariable("Path",
 				[EnvironmentVariableTarget]::Machine) + ";C:\Program Files\Python39",
 				[EnvironmentVariableTarget]::Machine)
+			refreshenv
 		}
 		Try{
 			$er = (invoke-expression "python -V") 2>&1
