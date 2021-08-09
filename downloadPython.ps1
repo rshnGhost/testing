@@ -32,31 +32,29 @@ Catch{
 		$python = 0
 		$statusFile = Test-Path C:\Temp\python-3.9.6-amd64.exe -PathType Leaf
 		Write-Host -NoNewline "Checking latest release"
-		If (!$statusFile) {
+		If (!$statusFile){
 			Write-Host "[File not found]"
 			Write-Host -NoNewline "Dowloading latest release"
 			Invoke-WebRequest -Uri $url -OutFile $output
 			Write-Host "[Downloaded]"
 		}
-		else
-		{
+		else{
 			Write-Host "[File found]"
 			Write-Host -NoNewline "Installing latest release"
 			$exe = 'C:\Temp\python-3.9.6-amd64.exe'
 			$args = '/passive', '/install', 'InstallAllUsers=1'
 			Start-Process -Wait $exe -ArgumentList $args
-			Try{
-				$er = (invoke-expression "python -V") 2>&1
-				if ($lastexitcode) {throw $er}
-				if (!$lastexitcode) {
-					Write-Host "[Done]"
-					python -m pip install pipenv
-				}
-				
+		}
+		Try{
+			$er = (invoke-expression "python -V") 2>&1
+			if ($lastexitcode) {throw $er}
+			if (!$lastexitcode) {
+				Write-Host "[Done]"
+				python -m pip install pipenv
 			}
-			Catch{
-				Write-Output "[Failed]"
-			}
+		}
+		Catch{
+			Write-Output "[Failed]"
 		}
 	}
 }
