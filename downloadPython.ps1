@@ -7,6 +7,7 @@ $output = "C:\Temp\python-3.9.6-amd64.exe"
 
 Try{
 	# Check if pipenv is already installed
+	Write-Host -NoNewline "checking pipenv..."
 	$er = (invoke-expression "python -m pipenv --version") 2>&1
 	if ($lastexitcode) {throw $er}
 	Write-Output "[Found]"
