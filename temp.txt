@@ -12,5 +12,8 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRCsv'))
 
 refreshenv
 
-python-3.9.6-amd64.exe /quiet InstallAllUsers=1
-python-3.9.6-amd64.exe /passive /install
+python-3.9.6-amd64.exe /quiet /install InstallAllUsers=1
+python-3.9.6-amd64.exe /passive /install InstallAllUsers=1
+
+## download and install
+iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JR4jF'))
