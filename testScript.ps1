@@ -99,13 +99,13 @@ function installPipenv {
 if(checkPipenv() -eq 0) {
 	if(checkPython() -eq 0) {
 		if(checkChocolatey() -eq 0) {
-			installChocolatey()
+			$value = installChocolatey()
 		}
 		else{
-			installPython()
+			$value = installPython()
 		}
 	}
 	else{
-		installPipenv()	
+		$value = installPipenv()	
 	}
 }
