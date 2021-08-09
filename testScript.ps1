@@ -1,3 +1,42 @@
+function installChocolatey {
+	try{
+		Write-Host -NoNewline "checking chocolatey..."
+		$er = (invoke-expression "choco -v") 2>&1
+		if ($lastexitcode) {throw $er}
+		if (!$lastexitcode) {Write-Output "[Found]"}
+	}
+	catch{
+		Write-Output "[Not Found]"
+		$InstallDir='C:\ProgramData\chocolatey'
+		$env:ChocolateyInstall="$InstallDir"
+		Set-ExecutionPolicy Bypass -Scope Process -Force;
+		iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+	}
+}
+
+function installPython {
+	try{
+		Write-Host -NoNewline "checking python..."
+		$er = (invoke-expression "python -V") 2>&1
+		if ($lastexitcode) {throw $er}
+		if (!$lastexitcode) {Write-Output "[Found]"}
+	}
+	catch{
+		Write-Output "[Not Found]"
+	}
+}
+
+function Pipenv {
+	try{
+		Write-Host -NoNewline "checking pipenv..."
+		$er = (invoke-expression "python -m pipenv --version") 2>&1
+		if ($lastexitcode) {throw $er}
+	}
+	catch{
+		Write-Output "[Not Found]"
+	}
+}
+
 Try{
 	# Check if pipenv is already installed
 	Write-Host -NoNewline "checking pipenv..."
@@ -22,31 +61,9 @@ Catch{
 	}
 	Catch{
 		Write-Output "[Not Found]"
-		$statusFile = Test-Path C:\Temp\python-3.9.6-amd64.exe -PathType Leaf
-		Write-Host -NoNewline "Checking latest release"
-		if(!$statusFile){
-			Write-Host "[File not found]"
-			Write-Host -NoNewline "Dowloading latest release"
-			Invoke-WebRequest -Uri $url -OutFile $output
-			Write-Host "[Downloaded]"
-		}
-		else{
-			Write-Host "[File found]"
-			Write-Host -NoNewline "Installing latest release"
-			$exe = 'C:\Temp\python-3.9.6-amd64.exe'
-			$args = '/passive', '/install', 'InstallAllUsers=1'
-			Start-Process -Wait $exe -ArgumentList $args
-			[Environment]::SetEnvironmentVariable(
-				"Path",
-				[Environment]::GetEnvironmentVariable("Path",
-				[EnvironmentVariableTarget]::Machine) + ";C:\Program Files\Python39",
-				[EnvironmentVariableTarget]::Machine)
-			refreshenv
-		}
-		start powershell{
-			Try{
+		Try{
 				Write-Host -NoNewline "checking python..."
-				$er = (invoke-expression "python -V") 2>&1
+				$er = (invoke-expression "choco -v") 2>&1
 				if ($lastexitcode) {throw $er}
 				if (!$lastexitcode) {
 					Write-Host "[Done]"
@@ -58,6 +75,7 @@ Catch{
 			Catch{
 				Write-Output "[Failed]"
 			}
-		}
+
 	}
-}
+			
+		}
