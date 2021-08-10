@@ -85,6 +85,7 @@ function installPython {
 		Write-Host -NoNewline "Installing Python..."
 		$er = (invoke-expression "choco install python --version=3.9.6 -y") 2>&1
 		if ($lastexitcode) {throw $er}
+		checkPython
 		if (!$lastexitcode) {
 			Write-Host "[Installed]"
 			$python = 1
