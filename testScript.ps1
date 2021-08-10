@@ -88,6 +88,7 @@ function installPython {
 		checkPython
 		if (!$lastexitcode) {
 			Write-Host "[Installed]"
+			refreshenv
 			$python = 1
 			return 1
 		}
@@ -126,14 +127,14 @@ if($valuepipenv -eq 0) {
 		if($valuechoco -eq 0) {
 			$value = installChocolatey
 			if(($python -eq 0) -and ($value -eq 1)) {
-				$value = installPython
-				$value = installPipenv
+				start powershell {$value = installPython}
+				start powershell {$value = installPipenv}
 			}
 		}
 		else{
-			$value = installPython
+			start powershell {$value = installPython}
 			if(($python -eq 1) -and ($value -eq 1)) {
-				$value = installPipenv
+				start powershell {$value = installPipenv}
 			}
 		}
 	}
