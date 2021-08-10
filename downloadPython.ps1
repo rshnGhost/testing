@@ -43,7 +43,7 @@ Catch{
 			Write-Host "[File found]"
 			Write-Host -NoNewline "Installing latest release"
 			$exe = 'C:\Temp\python-3.9.6-amd64.exe'
-			$args = '/passive', '/install', 'InstallAllUsers=1', 'PrependPath=1', 'Include_test=0'
+			$args = '/passive', 'install', 'InstallAllUsers=1', 'PrependPath=1', 'Include_test=0'
 			Start-Process -Wait $exe -ArgumentList $args
 			[Environment]::SetEnvironmentVariable(
 				"Path",
