@@ -5,7 +5,7 @@ $pipenv = 0
 $choco = 0
 
 function checkChocolatey {
-	Start-Process -Wait {
+	Start-Process -Wait powershell {
 		try{
 			Write-Host -NoNewline "Checking Chocolatey..."
 			$er = (invoke-expression "choco -v") 2>&1
@@ -25,7 +25,7 @@ function checkChocolatey {
 }
 
 function checkPython {
-	Start-Process -Wait {
+	Start-Process -Wait powershell {
 		try{
 			Write-Host -NoNewline "Checking Python..."
 			$er = (invoke-expression "python -V") 2>&1
@@ -45,7 +45,7 @@ function checkPython {
 }
 
 function checkPipenv {
-	Start-Process -Wait {
+	Start-Process -Wait powershell {
 		try{
 			Write-Host -NoNewline "Checking Pipenv..."
 			$er = (invoke-expression "python -m pipenv --version") 2>&1
@@ -65,7 +65,7 @@ function checkPipenv {
 }
 
 function installChocolatey {
-	Start-Process -Wait {
+	Start-Process -Wait powershell {
 		try{
 			Write-Host -NoNewline "Installing Chocolatey..."
 			$InstallDir='C:\ProgramData\chocolatey'
@@ -89,7 +89,7 @@ function installChocolatey {
 }
 
 function installPython {
-	Start-Process -Wait {
+	Start-Process -Wait powershell {
 		try{
 			Write-Host -NoNewline "Installing Python..."
 			$er = (invoke-expression "choco install python --version=3.9.6 -y") 2>&1
@@ -111,7 +111,7 @@ function installPython {
 }
 
 function installPipenv {
-	Start-Process -Wait {
+	Start-Process -Wait powershell {
 		try{
 			Write-Host -NoNewline "Installing Pipenv..."
 			$er = (invoke-expression "python -m pip install pipenv") 2>&1
