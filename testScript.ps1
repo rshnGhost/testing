@@ -125,6 +125,10 @@ if($valuepipenv -eq 0) {
 	if($valuepython -eq 0) {
 		if($valuechoco -eq 0) {
 			$value = installChocolatey
+			if(($python -eq 0) -and ($value -eq 1)) {
+				$value = installPython
+				$value = installPipenv
+			}
 		}
 		else{
 			$value = installPython
