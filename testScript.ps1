@@ -127,6 +127,9 @@ if($valuepipenv -eq 0) {
 		}
 		else{
 			$value = installPython
+			if($python -eq 1) {
+				$value = installPipenv
+			}
 		}
 	}
 	else{
