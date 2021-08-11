@@ -21,14 +21,30 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 	Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
 	Exit
 }
-
-$statusFolder = Test-Path C:\Temp\$dName
-if ($statusFolder) {
-	Write-Host -NoNewline "Deleting old Folder`t"
-	Remove-Item C:\Temp\$dName -Recurse
-	Write-Host "[Deleted old Files]"
+function deleteOldFolder {
+	$statusFolder = Test-Path C:\Temp\$dName
+	if ($statusFolder) {
+		Write-Host -NoNewline "Deleting old Folder`t"
+		Remove-Item C:\Temp\$dName -Recurse
+		Write-Host "[Deleted old Files]"
+	}
+}
+function setupProject {
+	Write-Host "Executing..."
+	cd "C:\Temp\$dName\$pName-$dName\windowCmd\"
+	Write-Host "Setting up..."
+	& "C:\Temp\$dName\$pName-$dName\windowCmd\2 setup.bat"
+	Write-Host "Running..."
+	& "C:\Temp\$dName\$pName-$dName\windowCmd\3 run.bat"
 }
 
+function expandZip {
+	Write-Host -NoNewline "Expand Archive`t`t"
+	Expand-Archive $output C:\Temp\$dName
+	Write-Host "[Done]"
+}
+
+deleteOldFolder
 Write-Host -NoNewline "Checking for file`t"
 $statusFile = Test-Path $output -PathType Leaf
 if (!$statusFile) {
@@ -43,16 +59,14 @@ if (!$statusFile) {
 	}
 	if ($statusFile) {
 		Write-Host "[Dowloaded]"
-		Write-Host -NoNewline "Expand Archive`t`t"
-		Expand-Archive $output C:\Temp\$dName
-		Write-Host "[Done]"
+		expandZip
+		setupProject
 	}
 }
 if ($statusFile) {
 	Write-Host "[File Found]"
-	Write-Host -NoNewline "Expand Archive`t`t"
-	Expand-Archive $output C:\Temp\$dName
-	Write-Host "[Done]"
+	expandZip
+	setupProject
 }
 
 
