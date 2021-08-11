@@ -7,6 +7,7 @@
 |test.ps1|[test.ps1](https://github.com/rshnGhost/testing/blob/main/test.ps1)|[PowerShell](https://github.com/rshnGhost/testing#test)|
 |testScript.ps1|[testScript.ps1](https://github.com/rshnGhost/testing/blob/main/testScript.ps1)|[PowerShell](https://github.com/rshnGhost/testing#testScript)|
 |withoutChoco.ps1|[withoutChoco.ps1](https://github.com/rshnGhost/testing/blob/main/withoutChoco.ps1)|[PowerShell](https://github.com/rshnGhost/testing#withoutChoco)|
+|webInstall.ps1|[webInstall.ps1](https://github.com/rshnGhost/testing/blob/main/webInstall.ps1)|[PowerShell](https://github.com/rshnGhost/testing#webInstall)|
 
 ## downloadPython
 ```markdown
@@ -36,4 +37,9 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRCsv'))
 ## withoutChoco
 ```markdown
 iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRiTj'))
+```
+
+## webInstall
+```markdown
+iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRia7'))
 ```
