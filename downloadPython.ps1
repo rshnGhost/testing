@@ -5,7 +5,7 @@ if (($env:PROCESSOR_ARCHITECTURE -eq "AMD64") -and ([Environment]::Is64BitOperat
 	Write-Output "[64bit]"
 }
 
-$url = https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe"
+$url = "https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe"
 $output = "C:\Temp\python-3.9.6-amd64.exe"
 
 Try{
