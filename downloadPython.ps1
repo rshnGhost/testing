@@ -3,15 +3,11 @@
 $pythonVersion = '3.9.6'
 
 function installPython{
-	Write-Host -NoNewline "Installing latest release`t`t"
+	Write-Host -NoNewline "Installing latest release`t"
 	$args = '/passive', 'install', 'InstallAllUsers=1', 'PrependPath=1', 'Include_test=0'
 	Start-Process -Wait $output -ArgumentList $args
-	[Environment]::SetEnvironmentVariable(
-		"Path",
-		[Environment]::GetEnvironmentVariable("Path",
-		[EnvironmentVariableTarget]::Machine) + ";C:\Program Files\Python39",
-		[EnvironmentVariableTarget]::Machine)
 	Try{
+		$er = (invoke-expression "refreshenv") 2>&1
 		$er = (invoke-expression "python -V") 2>&1
 		if ($lastexitcode) {throw $er}
 		Write-Host "[Not Installed]"
