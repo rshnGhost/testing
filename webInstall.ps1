@@ -30,12 +30,12 @@ if ($statusFolder) {
 }
 
 Write-Host -NoNewline "Checking for file`t`t"
-$statusFile = Test-Path "C:\Temp\$dName" -PathType Leaf
+$statusFile = Test-Path $output -PathType Leaf
 if (!$statusFile) {
 	Write-Host "[File not Found]"
 	Write-Host -NoNewline "Dowloading latest release`t"
 	Invoke-WebRequest -Uri $download -OutFile $output
-	$statusFile = Test-Path "C:\Temp\$dName" -PathType Leaf
+	$statusFile = Test-Path $output -PathType Leaf
 	if (!$statusFile) {
 		Write-Host "[Failed]"
 		pause
