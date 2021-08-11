@@ -20,11 +20,11 @@ Try{
 	Write-Host -NoNewline "checking pipenv..."
 	$er = (invoke-expression "python -m pipenv --version") 2>&1
 	if ($lastexitcode) {throw $er}
-	Write-Host "`t[Found]"
+	Write-Host "`t`t[Found]"
 	$pip = 1
 }
 Catch{
-	Write-Host "`t[Not Found]"
+	Write-Host "`t`t[Not Found]"
 	$pip = 0
 	## checking python
 	Write-Host -NoNewline "checking python..."
