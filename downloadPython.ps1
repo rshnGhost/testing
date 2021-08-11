@@ -1,8 +1,11 @@
 ## iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JR4jF'))
 
 $pythonVersion = '3.9.6'
-$url = "https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe"
-$download = "https://github.com/rshnGhost/"+$pName+"/archive/refs/heads/"+$fName+".zip"
+if ($env:PROCESSOR_ARCHITECTURE -eq "AMD64") -and ([Environment]::Is64BitOperatingSystem) {
+	Write-Output "[64bit]"
+}
+
+$url = https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe"
 $output = "C:\Temp\python-3.9.6-amd64.exe"
 
 Try{
