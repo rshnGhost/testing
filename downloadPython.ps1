@@ -20,11 +20,11 @@ Try{
 	Write-Host -NoNewline "checking pipenv..."
 	$er = (invoke-expression "python -m pipenv --version") 2>&1
 	if ($lastexitcode) {throw $er}
-	Write-Output "[Found]"
+	Write-Host "[Found]"
 	$pip = 1
 }
 Catch{
-	Write-Output "[Not Found]"
+	Write-Host "[Not Found]"
 	$pip = 0
 	## checking python
 	Write-Host -NoNewline "checking python..."
@@ -32,14 +32,14 @@ Catch{
 		# Check if python is already installed
 		$er = (invoke-expression "python -V") 2>&1
 		if ($lastexitcode) {throw $er}
-		Write-Output "[Found]"
+		Write-Host "[Found]"
 		$python = 1
 		Write-Host -NoNewline "installing pipenv..."
 		python -m pip install pipenv
-		Write-Output "[Done]"
+		Write-Host "[Done]"
 	}
 	Catch{
-		Write-Output "[Not Found]"
+		Write-Host "[Not Found]"
 		$python = 0
 		$statusFile = Test-Path $output -PathType Leaf
 		Write-Host -NoNewline "Checking latest release"
@@ -75,7 +75,7 @@ Catch{
 				}
 			}
 			Catch{
-				Write-Output "[Failed]"
+				Write-Host "[Failed]"
 			}
 		}
 	}
