@@ -2,6 +2,24 @@
 
 $pythonVersion = '3.9.6'
 
+function installPython{
+	Write-Host -NoNewline "Installing latest release`t`t"
+	$args = '/passive', 'install', 'InstallAllUsers=1', 'PrependPath=1', 'Include_test=0'
+	Start-Process -Wait $output -ArgumentList $args
+	[Environment]::SetEnvironmentVariable(
+		"Path",
+		[Environment]::GetEnvironmentVariable("Path",
+		[EnvironmentVariableTarget]::Machine) + ";C:\Program Files\Python39",
+		[EnvironmentVariableTarget]::Machine)
+	Try{
+		$er = (invoke-expression "python -V") 2>&1
+		if ($lastexitcode) {throw $er}
+		Write-Host "[Not Installed]"
+	}
+	Catch{
+		Write-Host "[Installed]"
+	}
+}
 # Check if operating system architecture
 	Write-Host -NoNewline "checking architecture...`t"
 if (($env:PROCESSOR_ARCHITECTURE -eq "AMD64") -and ([Environment]::Is64BitOperatingSystem)) {
@@ -48,18 +66,11 @@ Catch{
 			Write-Host -NoNewline "Dowloading latest release`t`t"
 			Invoke-WebRequest -Uri $url -OutFile $output
 			Write-Host "[Downloaded]"
+			installPython
 		}
 		else{
 			Write-Host "[File found]"
-			Write-Host -NoNewline "Installing latest release`t`t"
-			$args = '/passive', 'install', 'InstallAllUsers=1', 'PrependPath=1', 'Include_test=0'
-			Start-Process -Wait $output -ArgumentList $args
-			[Environment]::SetEnvironmentVariable(
-				"Path",
-				[Environment]::GetEnvironmentVariable("Path",
-				[EnvironmentVariableTarget]::Machine) + ";C:\Program Files\Python39",
-				[EnvironmentVariableTarget]::Machine)
-			refreshenv
+			installPython
 		}
 		Try{
 			Write-Host -NoNewline "checking python...`t`t"
@@ -67,7 +78,7 @@ Catch{
 			if ($lastexitcode) {throw $er}
 			if (!$lastexitcode) {
 				Write-Host "[Done]"
-				Write-Host -NoNewline "checking pipenv...`t`t"
+				Write-Host -NoNewline "installing pipenv...`t`t"
 				python -m pip install pipenv
 				Write-Host "[Done]"
 			}
