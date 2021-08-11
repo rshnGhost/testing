@@ -5,8 +5,9 @@ Write-Host $releases.sha[0].substring(0, [System.Math]::Min(7, $releases.Length)
 
 $fName = 'django-3.2.5'
 $pName = 'django-quick'
-$dName = $pName+'-'+$releases.sha[0].substring(0, [System.Math]::Min(7, $releases.Length))+'.zip'
-$output = "C:\Temp\$dName"
+$sha = $releases.sha[0].substring(0, [System.Math]::Min(7, $releases.Length))
+$dName = $pName+'-'+$sha
+$output = "C:\Temp\$dName.zip"
 $download = "https://github.com/rshnGhost/"+$pName+"/archive/refs/heads/"+$fName+".zip"
 
 Add-Type -AssemblyName System.Windows.Forms
@@ -21,19 +22,37 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 	Exit
 }
 
+$statusFolder = Test-Path C:\Temp\$dName
+if ($statusFolder) {
+	Write-Host -NoNewline "Deleting old Folder"
+	Remove-Item C:\Temp\$dName -Recurse
+	Write-Host "[Deleted old Files]"
+}
+
 Write-Host -NoNewline "Checking for file`t`t"
 $statusFile = Test-Path "C:\Temp\$dName" -PathType Leaf
 if (!$statusFile) {
 	Write-Host "[File not Found]"
-	Write-Host -NoNewline "Dowloading latest release`t`t"
+	Write-Host -NoNewline "Dowloading latest release`t"
 	Invoke-WebRequest -Uri $download -OutFile $output
 	$statusFile = Test-Path "C:\Temp\$dName" -PathType Leaf
 	if (!$statusFile) {
+		Write-Host "[Failed]"
+		pause
+		exit
+	}
+	if ($statusFile) {
 		Write-Host "[Dowloaded]"
+		Write-Host -NoNewline "Expand Archive`t`t"
+		Expand-Archive $output 'C:\Temp\'
+		Write-Host "[Done]"
 	}
 }
 if ($statusFile) {
 	Write-Host "[File Found]"
+	Write-Host -NoNewline "Expand Archive`t`t"
+	Expand-Archive $output 'C:\Temp\'
+	Write-Host "[Done]"
 }
 
 
