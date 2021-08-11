@@ -52,9 +52,8 @@ Catch{
 		else{
 			Write-Host "[File found]"
 			Write-Host -NoNewline "Installing latest release`t`t"
-			$exe = 'C:\Temp\python-3.9.6-amd64.exe'
 			$args = '/passive', 'install', 'InstallAllUsers=1', 'PrependPath=1', 'Include_test=0'
-			Start-Process -Wait $exe -ArgumentList $args
+			Start-Process -Wait $output -ArgumentList $args
 			[Environment]::SetEnvironmentVariable(
 				"Path",
 				[Environment]::GetEnvironmentVariable("Path",
@@ -62,21 +61,19 @@ Catch{
 				[EnvironmentVariableTarget]::Machine)
 			refreshenv
 		}
-		start powershell{
-			Try{
-				Write-Host -NoNewline "checking python...`t`t"
-				$er = (invoke-expression "python -V") 2>&1
-				if ($lastexitcode) {throw $er}
-				if (!$lastexitcode) {
-					Write-Host "[Done]"
-					Write-Host -NoNewline "checking pipenv...`t`t"
-					python -m pip install pipenv
-					Write-Host "[Done]"
-				}
+		Try{
+			Write-Host -NoNewline "checking python...`t`t"
+			$er = (invoke-expression "python -V") 2>&1
+			if ($lastexitcode) {throw $er}
+			if (!$lastexitcode) {
+				Write-Host "[Done]"
+				Write-Host -NoNewline "checking pipenv...`t`t"
+				python -m pip install pipenv
+				Write-Host "[Done]"
 			}
-			Catch{
-				Write-Host "[Failed]"
-			}
+		}
+		Catch{
+			Write-Host "[Failed]"
 		}
 	}
 }
