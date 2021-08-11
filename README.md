@@ -2,7 +2,6 @@
 | File | Link | PS Url |
 |:---------:|:----------:|:---------:
 |downloadPython.ps1|[downloadPython.ps1](https://github.com/rshnGhost/testing/blob/main/downloadPython.ps1)|[PowerShell](https://github.com/rshnGhost/testing#powershell-script)|
-
 |installPython.ps1|[downloadPython.ps1](https://github.com/rshnGhost/testing/blob/main/installPython.ps1)|[PowerShell](https://github.com/rshnGhost/testing#installPython)|
 |script.ps1|[downloadPython.ps1](https://github.com/rshnGhost/testing/blob/main/script.ps1)|[PowerShell](https://github.com/rshnGhost/testing#script)|
 |test.ps1|[downloadPython.ps1](https://github.com/rshnGhost/testing/blob/main/test.ps1)|[PowerShell](https://github.com/rshnGhost/testing#test)|
