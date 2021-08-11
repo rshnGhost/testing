@@ -4,9 +4,9 @@ $releases = ConvertFrom-Json $webData.content
 Write-Host $releases.sha[0].substring(0, [System.Math]::Min(7, $s.Length))
 
 $fName = 'django-3.2.5'
-$dName = 'django-3.2.5['+$releases.sha[0].substring(0, [System.Math]::Min(7, $s.Length))+']'
+$dName = 'django-quick['+$releases.sha[0].substring(0, [System.Math]::Min(7, $s.Length))+'].zip'
 $pName = 'django-quick'
-$output = "C:\Temp\$pName-$dName.zip"
+$output = "C:\Temp\$dName"
 Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
@@ -22,7 +22,7 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 # GUI Specs
 Write-Host "Checking for file..."
 cd 'C:\Temp\'
-$statusFile = Test-Path C:\Temp\$pName-$dName.zip -PathType Leaf
+$statusFile = Test-Path C:\Temp\$dName.zip -PathType Leaf
 If (!$statusFile) {
   Try{
     $download = "https://github.com/rshnGhost/"+$pName+"/archive/refs/heads/"+$fName+".zip"
