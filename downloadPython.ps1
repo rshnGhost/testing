@@ -1,7 +1,7 @@
 ## iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JR4jF'))
 
 $pythonVersion = '3.9.6'
-if ($env:PROCESSOR_ARCHITECTURE -eq "AMD64") -and ([Environment]::Is64BitOperatingSystem) {
+if (($env:PROCESSOR_ARCHITECTURE -eq "AMD64") -and ([Environment]::Is64BitOperatingSystem)) {
 	Write-Output "[64bit]"
 }
 
