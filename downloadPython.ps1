@@ -5,12 +5,12 @@ $pythonVersion = '3.9.6'
 # Check if operating system architecture
 	Write-Host -NoNewline "checking architecture..."
 if (($env:PROCESSOR_ARCHITECTURE -eq "AMD64") -and ([Environment]::Is64BitOperatingSystem)) {
-	Write-Host "[64bit]"
+	Write-Host "`t[64bit]"
 	$url = "https://www.python.org/ftp/python/"+$pythonVersion+"/python-"+$pythonVersion+"-amd64.exe"
 	$output = "C:\Temp\python-"+$pythonVersion+"-amd64.exe"
 }
 else{
-	Write-Host "[32bit]"
+	Write-Host "`t[32bit]"
 	$url = "https://www.python.org/ftp/python/"+$pythonVersion+"/python-"+$pythonVersion+".exe"
 	$output = "C:\Temp\python-"+$pythonVersion+".exe"
 }
