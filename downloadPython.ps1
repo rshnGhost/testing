@@ -56,10 +56,10 @@ Catch{
 		Write-Host "[Not Found]"
 		$python = 0
 		$statusFile = Test-Path $output -PathType Leaf
-		Write-Host -NoNewline "Checking latest release`t`t"
+		Write-Host -NoNewline "Checking latest release`t"
 		If (!$statusFile){
 			Write-Host "[File not Found]"
-			Write-Host -NoNewline "Dowloading latest release`t`t"
+			Write-Host -NoNewline "Dowloading latest release`t"
 			Invoke-WebRequest -Uri $url -OutFile $output
 			Write-Host "[Downloaded]"
 			installPython
@@ -69,12 +69,12 @@ Catch{
 			installPython
 		}
 		Try{
-			Write-Host -NoNewline "Checking python`t`t"
+			Write-Host -NoNewline "Checking python`t`t`t"
 			$er = (invoke-expression "python -V") 2>&1
 			if ($lastexitcode) {throw $er}
 			if (!$lastexitcode) {
 				Write-Host "[Done]"
-				Write-Host -NoNewline "Installing pipenv`t`t"
+				Write-Host -NoNewline "Installing pipenv`t`t`t"
 				$er = (invoke-expression "python -m pip install pipenv") 2>&1
 				if ($lastexitcode) {throw $er}
 				Write-Host "[Done]"
