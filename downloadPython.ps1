@@ -6,8 +6,8 @@ function installPython{
 	Write-Host -NoNewline "Installing latest release`t"
 	$args = '/passive', 'install', 'InstallAllUsers=1', 'PrependPath=1', 'Include_test=0'
 	Start-Process -Wait $output -ArgumentList $args
+	Start-Process -Wait refreshenv
 	Try{
-		$er = (invoke-expression "refreshenv") 2>&1
 		$er = (invoke-expression "python -V") 2>&1
 		if ($lastexitcode) {throw $er}
 		Write-Host "[Installed]"
@@ -56,10 +56,10 @@ Catch{
 		Write-Host "[Not Found]"
 		$python = 0
 		$statusFile = Test-Path $output -PathType Leaf
-		Write-Host -NoNewline "Checking latest release`t`t"
+		Write-Host -NoNewline "Checking latest release`t"
 		If (!$statusFile){
 			Write-Host "[File not found]"
-			Write-Host -NoNewline "Dowloading latest release`t`t"
+			Write-Host -NoNewline "Dowloading latest release`t"
 			Invoke-WebRequest -Uri $url -OutFile $output
 			Write-Host "[Downloaded]"
 			installPython
