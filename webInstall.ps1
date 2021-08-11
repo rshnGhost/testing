@@ -21,12 +21,16 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 	Exit
 }
 
-Write-Host -NoNewline "Checking for file`t"
+Write-Host -NoNewline "Checking for file`t`t"
 $statusFile = Test-Path "C:\Temp\$dName" -PathType Leaf
 if (!$statusFile) {
 	Write-Host "[File not Found]"
-	Write-Host -NoNewline "Dowloading latest release`t"
+	Write-Host -NoNewline "Dowloading latest release`t`t"
 	Invoke-WebRequest -Uri $download -OutFile $output
+	$statusFile = Test-Path "C:\Temp\$dName" -PathType Leaf
+	if (!$statusFile) {
+		Write-Host "[Dowloaded]"
+	}
 }
 if ($statusFile) {
 	Write-Host "[File Found]"
