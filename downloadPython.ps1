@@ -17,7 +17,7 @@ function installPython{
 	}
 }
 # Check if operating system architecture
-	Write-Host -NoNewline "Checking architecture...`t"
+	Write-Host -NoNewline "Checking architecture`t"
 if (($env:PROCESSOR_ARCHITECTURE -eq "AMD64") -and ([Environment]::Is64BitOperatingSystem)) {
 	Write-Host "[64bit Found]"
 	$url = "https://www.python.org/ftp/python/"+$pythonVersion+"/python-"+$pythonVersion+"-amd64.exe"
@@ -31,7 +31,7 @@ else{
 
 Try{
 	# Check if pipenv is already installed
-	Write-Host -NoNewline "Checking pipenv...`t`t"
+	Write-Host -NoNewline "Checking pipenv`t`t"
 	$er = (invoke-expression "python -m pipenv --version") 2>&1
 	if ($lastexitcode) {throw $er}
 	Write-Host "[Found]"
@@ -41,14 +41,14 @@ Catch{
 	Write-Host "[Not Found]"
 	$pip = 0
 	## checking python
-	Write-Host -NoNewline "Checking python...`t`t"
+	Write-Host -NoNewline "Checking python`t`t"
 	Try{
 		# Check if python is already installed
 		$er = (invoke-expression "python -V") 2>&1
 		if ($lastexitcode) {throw $er}
 		Write-Host "[Found]"
 		$python = 1
-		Write-Host -NoNewline "Installing pipenv...`t`t"
+		Write-Host -NoNewline "Installing pipenv`t`t"
 		python -m pip install pipenv
 		Write-Host "[Done]"
 	}
@@ -69,12 +69,12 @@ Catch{
 			installPython
 		}
 		Try{
-			Write-Host -NoNewline "Checking python...`t`t"
+			Write-Host -NoNewline "Checking python`t`t"
 			$er = (invoke-expression "python -V") 2>&1
 			if ($lastexitcode) {throw $er}
 			if (!$lastexitcode) {
 				Write-Host "[Done]"
-				Write-Host -NoNewline "Installing pipenv...`t`t"
+				Write-Host -NoNewline "Installing pipenv`t`t"
 				python -m pip install pipenv
 				Write-Host "[Done]"
 			}
