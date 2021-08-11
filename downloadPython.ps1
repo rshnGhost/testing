@@ -3,7 +3,7 @@
 $pythonVersion = '3.9.6'
 
 function installPython{
-	Write-Host -NoNewline "Installing latest release`t"
+	Write-Host -NoNewline "Installing latest release`t`t"
 	$args = '/passive', 'install', 'InstallAllUsers=1', 'PrependPath=1', 'Include_test=0'
 	Start-Process -Wait $output -ArgumentList $args
 	Start-Process -Wait refreshenv
@@ -17,7 +17,7 @@ function installPython{
 	}
 }
 # Check if operating system architecture
-	Write-Host -NoNewline "Checking architecture`t"
+	Write-Host -NoNewline "Checking architecture`t`t"
 if (($env:PROCESSOR_ARCHITECTURE -eq "AMD64") -and ([Environment]::Is64BitOperatingSystem)) {
 	Write-Host "[64bit Found]"
 	$url = "https://www.python.org/ftp/python/"+$pythonVersion+"/python-"+$pythonVersion+"-amd64.exe"
@@ -31,7 +31,7 @@ else{
 
 Try{
 	# Check if pipenv is already installed
-	Write-Host -NoNewline "Checking pipenv`t`t"
+	Write-Host -NoNewline "Checking pipenv`t`t`t"
 	$er = (invoke-expression "python -m pipenv --version") 2>&1
 	if ($lastexitcode) {throw $er}
 	Write-Host "[Found]"
@@ -41,14 +41,14 @@ Catch{
 	Write-Host "[Not Found]"
 	$pip = 0
 	## checking python
-	Write-Host -NoNewline "Checking python`t`t"
+	Write-Host -NoNewline "Checking python`t`t`t"
 	Try{
 		# Check if python is already installed
 		$er = (invoke-expression "python -V") 2>&1
 		if ($lastexitcode) {throw $er}
 		Write-Host "[Found]"
 		$python = 1
-		Write-Host -NoNewline "Installing pipenv`t`t"
+		Write-Host -NoNewline "Installing pipenv`t`t`t"
 		python -m pip install pipenv
 		Write-Host "[Done]"
 	}
@@ -56,16 +56,16 @@ Catch{
 		Write-Host "[Not Found]"
 		$python = 0
 		$statusFile = Test-Path $output -PathType Leaf
-		Write-Host -NoNewline "Checking latest release`t"
+		Write-Host -NoNewline "Checking latest release`t`t"
 		If (!$statusFile){
-			Write-Host "[File not found]"
-			Write-Host -NoNewline "Dowloading latest release`t"
+			Write-Host "[File not Found]"
+			Write-Host -NoNewline "Dowloading latest release`t`t"
 			Invoke-WebRequest -Uri $url -OutFile $output
 			Write-Host "[Downloaded]"
 			installPython
 		}
 		else{
-			Write-Host "[File found]"
+			Write-Host "[File Found]"
 			installPython
 		}
 		Try{
