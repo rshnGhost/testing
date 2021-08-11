@@ -1,7 +1,7 @@
 $url = "https://api.github.com/repos/rshnGhost/django-quick/commits"
 $webData = Invoke-WebRequest -Uri $url -UseBasicParsing
 $releases = ConvertFrom-Json $webData.content
-Write-Host $releases.sha[0]
+Write-Host $releases.sha[0][0-6]
 
 $fName = 'django-3.2.5'
 $dName = 'django-3.2.5['+$releases.sha[0]+']'
