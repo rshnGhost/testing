@@ -3,7 +3,7 @@
 $pythonVersion = '3.9.6'
 
 function installPython{
-	Write-Host -NoNewline "Installing latest release`t`t"
+	Write-Host -NoNewline "Installing latest release`t"
 	$args = '/passive', 'install', 'InstallAllUsers=1', 'PrependPath=1', 'Include_test=0'
 	Start-Process -Wait $output -ArgumentList $args
 	Start-Process -Wait refreshenv
@@ -56,7 +56,7 @@ Catch{
 		Write-Host "[Not Found]"
 		$python = 0
 		$statusFile = Test-Path $output -PathType Leaf
-		Write-Host -NoNewline "Checking latest release`t"
+		Write-Host -NoNewline "Checking latest release`t`t"
 		If (!$statusFile){
 			Write-Host "[File not Found]"
 			Write-Host -NoNewline "Dowloading latest release`t"
