@@ -1,4 +1,9 @@
-$fName = 'django-3.2.5'
+$url = "https://api.github.com/repos/rshnGhost/testing/commits"
+$webData = Invoke-WebRequest -Uri $url -UseBasicParsing
+$releases = ConvertFrom-Json $webData.content
+Write-Host $releases.sha[0]
+
+$fName = 'django-3.2.5['+$releases.sha[0]+']'
 $pName = 'django-quick'
 $output = "C:\Temp\$pName-$fName.zip"
 Add-Type -AssemblyName System.Windows.Forms
