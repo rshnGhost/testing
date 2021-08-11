@@ -1,10 +1,10 @@
 $url = "https://api.github.com/repos/rshnGhost/django-quick/commits"
 $webData = Invoke-WebRequest -Uri $url -UseBasicParsing
 $releases = ConvertFrom-Json $webData.content
-Write-Host $releases.sha[0][0-6]
+Write-Host $releases.sha[0].substring(0, [System.Math]::Min(7, $s.Length))
 
 $fName = 'django-3.2.5'
-$dName = 'django-3.2.5['+$releases.sha[0]+']'
+$dName = 'django-3.2.5['+$releases.sha[0].substring(0, [System.Math]::Min(7, $s.Length))+']'
 $pName = 'django-quick'
 $output = "C:\Temp\$pName-$dName.zip"
 Add-Type -AssemblyName System.Windows.Forms
