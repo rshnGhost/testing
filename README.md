@@ -15,25 +15,25 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JR4jF'))
 
 ## installPython
 ```markdown
-iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JR4jF'))
+iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JR0jJ'))
 ```
 
 ## script
 ```markdown
-iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JR4jF'))
+iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRcLl'))
 ```
 
 ## test
 ```markdown
-iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JR4jF'))
+iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRiT9'))
 ```
 
 ## testScript
 ```markdown
-iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JR4jF'))
+iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRCsv'))
 ```
 
 ## withoutChoco
 ```markdown
-iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JR4jF'))
+iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRiTj'))
 ```
