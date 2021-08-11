@@ -49,9 +49,14 @@ Catch{
 		Write-Host "[Found]"
 		$python = 1
 		Write-Host -NoNewline "Installing pipenv`t`t"
-		$er = (invoke-expression "python -m pip install pipenv") 2>&1
-		if ($lastexitcode) {throw $er}
-		Write-Host "[Done]"
+		Try{
+			$er = (invoke-expression "python -m pip install pipenv") 2>&1
+			if ($lastexitcode) {throw $er}
+			Write-Host "[Done]"
+		}
+		Catch{
+			Write-Host "[Failed]"
+		}
 	}
 	Catch{
 		Write-Host "[Not Found]"
