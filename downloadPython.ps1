@@ -48,7 +48,7 @@ Catch{
 		if ($lastexitcode) {throw $er}
 		Write-Host "[Found]"
 		$python = 1
-		Write-Host -NoNewline "Installing pipenv`t`t`t"
+		Write-Host -NoNewline "Installing pipenv`t`t"
 		python -m pip install pipenv
 		Write-Host "[Done]"
 	}
