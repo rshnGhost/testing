@@ -3,10 +3,14 @@
 $pythonVersion = '3.9.6'
 if (($env:PROCESSOR_ARCHITECTURE -eq "AMD64") -and ([Environment]::Is64BitOperatingSystem)) {
 	Write-Output "[64bit]"
+	$url = "https://www.python.org/ftp/python/"+$pythonVersion+"/python-"+$pythonVersion+"-amd64.exe"
+	$output = "C:\Temp\python-"+$pythonVersion+"-amd64.exe"
 }
-
-$url = "https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe"
-$output = "C:\Temp\python-3.9.6-amd64.exe"
+else{
+	Write-Output "[32bit]"
+	$url = "https://www.python.org/ftp/python/"+$pythonVersion+"/python-"+$pythonVersion+".exe"
+	$output = "C:\Temp\python-"+$pythonVersion+".exe"
+}
 
 Try{
 	# Check if pipenv is already installed
@@ -34,7 +38,7 @@ Catch{
 	Catch{
 		Write-Output "[Not Found]"
 		$python = 0
-		$statusFile = Test-Path C:\Temp\python-3.9.6-amd64.exe -PathType Leaf
+		$statusFile = Test-Path $output -PathType Leaf
 		Write-Host -NoNewline "Checking latest release"
 		If (!$statusFile){
 			Write-Host "[File not found]"
