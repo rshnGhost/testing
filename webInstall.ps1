@@ -31,11 +31,11 @@ function deleteOldFolder {
 }
 function setupProject {
 	Write-Host "Executing..."
-	cd "C:\Temp\$dName\$pName-$dName\windowCmd\"
+	cd "C:\Temp\$dName\$pName-$fName\windowCmd\"
 	Write-Host "Setting up..."
-	& "C:\Temp\$dName\$pName-$dName\windowCmd\2 setup.bat"
+	& "C:\Temp\$dName\$pName-$fName\windowCmd\2 setup.bat"
 	Write-Host "Running..."
-	& "C:\Temp\$dName\$pName-$dName\windowCmd\3 run.bat"
+	& "C:\Temp\$dName\$pName-$fName\windowCmd\3 run.bat"
 }
 
 function expandZip {
