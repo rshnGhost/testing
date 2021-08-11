@@ -24,12 +24,12 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 
 $statusFolder = Test-Path C:\Temp\$dName
 if ($statusFolder) {
-	Write-Host -NoNewline "Deleting old Folder"
+	Write-Host -NoNewline "Deleting old Folder`t"
 	Remove-Item C:\Temp\$dName -Recurse
 	Write-Host "[Deleted old Files]"
 }
 
-Write-Host -NoNewline "Checking for file`t`t"
+Write-Host -NoNewline "Checking for file`t"
 $statusFile = Test-Path $output -PathType Leaf
 if (!$statusFile) {
 	Write-Host "[File not Found]"
