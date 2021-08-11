@@ -1,5 +1,3 @@
-[Environment]::SetEnvironmentVariable(
-"Path",
-[Environment]::GetEnvironmentVariable("Path",
-[EnvironmentVariableTarget]::Machine) + ";C:\Program Files\Python39",
-[EnvironmentVariableTarget]::Machine)
+$webData = Invoke-WebRequest -Uri "https://api.github.com/repos/rshnGhost/testing/commits"
+$releases = ConvertFrom-Json $webData.content
+$releases | get-member
