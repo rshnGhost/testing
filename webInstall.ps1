@@ -44,14 +44,14 @@ if (!$statusFile) {
 	if ($statusFile) {
 		Write-Host "[Dowloaded]"
 		Write-Host -NoNewline "Expand Archive`t`t"
-		Expand-Archive $output 'C:\Temp\'
+		Expand-Archive $output C:\Temp\$dName
 		Write-Host "[Done]"
 	}
 }
 if ($statusFile) {
 	Write-Host "[File Found]"
 	Write-Host -NoNewline "Expand Archive`t`t"
-	Expand-Archive $output 'C:\Temp\'
+	Expand-Archive $output C:\Temp\$dName
 	Write-Host "[Done]"
 }
 
