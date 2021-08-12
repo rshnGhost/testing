@@ -33,9 +33,9 @@ function setupProject {
 	Write-Host "Executing..."
 	cd "C:\Temp\$dName\$pName-$fName\windowCmd\"
 	Write-Host "Setting up..."
-	& "C:\Temp\$dName\$pName-$fName\windowCmd\2 setup.bat"
+	$er = (invoke-expression "C:\Temp\$dName\$pName-$fName\windowCmd\2 setup.bat") 2>&1
 	Write-Host "Running..."
-	& "C:\Temp\$dName\$pName-$fName\windowCmd\3 run.bat"
+	$er = (invoke-expression "C:\Temp\$dName\$pName-$fName\windowCmd\3 run.bat") 2>&1
 }
 
 function expandZip {
