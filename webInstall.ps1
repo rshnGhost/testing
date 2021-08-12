@@ -1,5 +1,4 @@
 ## iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRia7'))
-$releases = ""
 
 function getAdmin {
 	$Ask = 'Do you want to run this as an Administrator?
@@ -25,7 +24,7 @@ function getSha {
 	$url = "https://api.github.com/repos/rshnGhost/django-quick/commits"
 	$webData = Invoke-WebRequest -Uri $url -UseBasicParsing
 	$releases = ConvertFrom-Json $webData.content
-	Write-Host $releases
+	return $releases.sha[0].substring(0, [System.Math]::Min(7, $releases.Length))
 }
 
 function deleteOldFolder {
@@ -70,8 +69,7 @@ function installPython{
 getAdmin
 $fName = 'django-3.2.5'
 $pName = 'django-quick'
-getSha
-$sha = $releases.sha[0].substring(0, [System.Math]::Min(7, $releases.Length))
+$sha = getSha
 Write-Host $sha
 $dName = $pName+'-'+$sha
 $output = "C:\Temp\$dName.zip"
