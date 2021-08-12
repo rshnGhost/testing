@@ -81,12 +81,12 @@ Write-Host -NoNewline "Checking architecture`t`t"
 if (($env:PROCESSOR_ARCHITECTURE -eq "AMD64") -and ([Environment]::Is64BitOperatingSystem)) {
 	Write-Host "[64bit Found]"
 	$url = "https://www.python.org/ftp/python/"+$pythonVersion+"/python-"+$pythonVersion+"-amd64.exe"
-	$output = "C:\Temp\python-"+$pythonVersion+"-amd64.exe"
+	$outputExe = "C:\Temp\python-"+$pythonVersion+"-amd64.exe"
 }
 else{
 	Write-Host "[32bit Found]"
 	$url = "https://www.python.org/ftp/python/"+$pythonVersion+"/python-"+$pythonVersion+".exe"
-	$output = "C:\Temp\python-"+$pythonVersion+".exe"
+	$outputExe = "C:\Temp\python-"+$pythonVersion+".exe"
 }
 
 Try{
@@ -126,7 +126,7 @@ Catch{
 		If (!$statusFile){
 			Write-Host "[File not Found]"
 			Write-Host -NoNewline "Dowloading latest release`t"
-			Invoke-WebRequest -Uri $url -OutFile $output
+			Invoke-WebRequest -Uri $url -OutFile $outputExe
 			Write-Host "[Downloaded]"
 			installPython
 		}
