@@ -32,10 +32,30 @@ function deleteOldFolder {
 function setupProject {
 	Write-Host "Executing..."
 	cd "C:\Temp\$dName\$pName-$fName\windowCmd\"
-	Write-Host "Setting up..."
-	$er = (invoke-expression "C:\Temp\$dName\$pName-$fName\windowCmd\2 setup.bat") 2>&1
-	Write-Host "Running..."
-	$er = (invoke-expression "C:\Temp\$dName\$pName-$fName\windowCmd\3 run.bat") 2>&1
+	try{
+		Write-Host -NoNewline "Setting up..."
+		$er = (invoke-expression "C:\Temp\$dName\$pName-$fName\windowCmd\2 setup.bat") 2>&1
+		if ($lastexitcode) {throw $er}
+		if (!$lastexitcode) {
+			Write-Host "[Done]"
+			try{
+				Write-Host -NoNewline "Running..."
+				$er = (invoke-expression "C:\Temp\$dName\$pName-$fName\windowCmd\3 run.bat") 2>&1
+				if ($lastexitcode) {throw $er}
+				if (!$lastexitcode) {
+					Write-Host "[Done]"
+				}
+			}
+			catch{
+				Write-Host "[Not Done]"
+				return -1
+			}
+		}
+	}
+	catch{
+		Write-Host "[Not Done]"
+		return -1
+	}
 }
 
 function expandZip {
