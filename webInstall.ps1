@@ -1,4 +1,6 @@
 ## iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRia7'))
+$releases = ""
+
 function getAdmin {
 	$Ask = 'Do you want to run this as an Administrator?
         Select "Yes" to Run as an Administrator
