@@ -25,6 +25,7 @@ function getSha {
 	$url = "https://api.github.com/repos/rshnGhost/django-quick/commits"
 	$webData = Invoke-WebRequest -Uri $url -UseBasicParsing
 	$releases = ConvertFrom-Json $webData.content
+	Write-Host $releases
 }
 
 function deleteOldFolder {
