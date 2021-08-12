@@ -17,7 +17,7 @@ function installPython{
 	}
 }
 # Check if operating system architecture
-	Write-Host -NoNewline "Checking architecture`t`t"
+Write-Host -NoNewline "Checking architecture`t`t"
 if (($env:PROCESSOR_ARCHITECTURE -eq "AMD64") -and ([Environment]::Is64BitOperatingSystem)) {
 	Write-Host "[64bit Found]"
 	$url = "https://www.python.org/ftp/python/"+$pythonVersion+"/python-"+$pythonVersion+"-amd64.exe"
