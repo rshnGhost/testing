@@ -1,4 +1,6 @@
-$url = "https://api.github.com/repos/rshnGhost/testing/commits"
-$webData = Invoke-WebRequest -Uri $url -UseBasicParsing
-$releases = ConvertFrom-Json $webData.content
-Write-Host $releases.sha[0].substring(0, [System.Math]::Min(7, $s.Length))
+if ([Console]::KeyAvailable) {
+  $key = [Console]::ReadKey($true)
+  if ($key.key -eq "C" -and $key.modifiers -eq "Control") { 
+    Write-Host "Done"
+  }
+}
