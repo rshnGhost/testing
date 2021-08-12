@@ -1,3 +1,4 @@
+## iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JRia7'))
 function getAdmin {
 	$Ask = 'Do you want to run this as an Administrator?
         Select "Yes" to Run as an Administrator
@@ -27,7 +28,7 @@ function getSha {
 function deleteOldFolder {
 	$statusFolder = Test-Path C:\Temp\$dName
 	if ($statusFolder) {
-		Write-Host -NoNewline "Deleting old Folder`t"
+		Write-Host -NoNewline "Deleting old Folder`t`t"
 		Remove-Item C:\Temp\$dName -Recurse
 		Write-Host "[Deleted old Files]"
 	}
@@ -43,7 +44,7 @@ function setupProject {
 }
 
 function expandZip {
-	Write-Host -NoNewline "Expand Archive`t`t"
+	Write-Host -NoNewline "Expand Archive`t`t`t"
 	Expand-Archive $output C:\Temp\$dName
 	Write-Host "[Done]"
 }
@@ -148,11 +149,11 @@ Catch{
 	}
 }
 deleteOldFolder
-Write-Host -NoNewline "Checking for file`t"
+Write-Host -NoNewline "Checking for file`t`t"
 $statusFile = Test-Path $output -PathType Leaf
 if (!$statusFile) {
 	Write-Host "[File not Found]"
-	Write-Host -NoNewline "Dowloading latest release`t"
+	Write-Host -NoNewline "Dowloading latest release`t`t"
 	Invoke-WebRequest -Uri $download -OutFile $output
 	$statusFile = Test-Path $output -PathType Leaf
 	if (!$statusFile) {
