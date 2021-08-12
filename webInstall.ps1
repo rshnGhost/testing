@@ -33,13 +33,13 @@ function setupProject {
 	Write-Host "Executing..."
 	cd "C:\Temp\$dName\$pName-$fName\windowCmd\"
 	try{
-		Write-Host -NoNewline "Setting up..."
+		Write-Host -NoNewline "Setting up...`t`t"
 		$er = (invoke-expression "C:\Temp\$dName\$pName-$fName\windowCmd\2 setup.bat") 2>&1
 		if ($lastexitcode) {throw $er}
 		if (!$lastexitcode) {
 			Write-Host "[Done]"
 			try{
-				Write-Host -NoNewline "Running..."
+				Write-Host -NoNewline "Running...`t`t"
 				$er = (invoke-expression "C:\Temp\$dName\$pName-$fName\windowCmd\3 run.bat") 2>&1
 				if ($lastexitcode) {throw $er}
 				if (!$lastexitcode) {
