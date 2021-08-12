@@ -75,7 +75,6 @@ getAdmin
 $fName = 'django-3.2.5'
 $pName = 'django-quick'
 $sha = getSha
-Write-Host $sha
 $dName = $pName+'-'+$sha
 $output = "C:\Temp\$dName.zip"
 $download = "https://github.com/rshnGhost/"+$pName+"/archive/refs/heads/"+$fName+".zip"
